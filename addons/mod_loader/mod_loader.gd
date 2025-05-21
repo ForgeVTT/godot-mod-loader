@@ -37,7 +37,7 @@ func _init() -> void:
 		return
 
 	# If custom_mod_loader is enabled, do not use ModLoader
-	if not OS.has_feature("custom_mod_loader"):
+	if OS.has_feature("custom_mod_loader"):
 		return
 
 	# Only load the hook pack if not in the editor
