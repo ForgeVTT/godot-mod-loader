@@ -36,6 +36,10 @@ func _init() -> void:
 	if ModLoaderStore.REQUIRE_CMD_LINE and not _ModLoaderCLI.is_running_with_command_line_arg("--enable-mods"):
 		return
 
+	# If custom_mod_loader is enabled, do not use ModLoader
+	if not OS.has_feature("custom_mod_loader"):
+		return
+
 	# Only load the hook pack if not in the editor
 	# We can't use it in the editor - see https://github.com/godotengine/godot/issues/19815
 	# Mod devs can use the Dev Tool to generate hooks in the editor.
