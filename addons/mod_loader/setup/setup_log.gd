@@ -176,6 +176,7 @@ static func _rotate_log_file() -> void:
 	var log_file := FileAccess.open(MOD_LOG_PATH, FileAccess.WRITE)
 	if log_file == null:
 		assert(false, "Could not open log file, error code: %s" % error)
+		return
 	log_file.store_string('%s Created log' % _get_date_string())
 	log_file.close()
 
