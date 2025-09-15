@@ -141,6 +141,9 @@ static func _get_date_time_string() -> String:
 # =============================================================================
 
 static func _write_to_log_file(string_to_write: String) -> void:
+	# Log file write and log file rotation not available on web
+	if OS.has_feature("web"):
+		return
 	if not FileAccess.file_exists(MOD_LOG_PATH):
 		_rotate_log_file()
 
@@ -158,6 +161,9 @@ static func _write_to_log_file(string_to_write: String) -> void:
 # Keeps log backups for every run, just like the Godot; gdscript implementation of
 # https://github.com/godotengine/godot/blob/1d14c054a12dacdc193b589e4afb0ef319ee2aae/core/io/logger.cpp#L151
 static func _rotate_log_file() -> void:
+	# Log file write and log file rotation not available on web
+	if OS.has_feature("web"):
+		return
 	var MAX_LOGS: int = ProjectSettings.get_setting("debug/file_logging/max_log_files")
 
 	if FileAccess.file_exists(MOD_LOG_PATH):
