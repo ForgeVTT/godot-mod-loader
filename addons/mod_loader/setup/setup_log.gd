@@ -92,6 +92,8 @@ static func debug_json_print(message: String, json_printable, mod_name: String) 
 # =============================================================================
 
 static func _log(message: String, mod_name: String, log_type: String = "info") -> void:
+	if OS.has_feature("logger_off"):
+		return
 	var time := "%s   " % _get_time_string()
 	var log_entry := ModLoaderLogEntry.new(mod_name, message, log_type, time)
 

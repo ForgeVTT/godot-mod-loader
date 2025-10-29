@@ -392,6 +392,8 @@ static func get_all_entries_as_string(log_entries: Array) -> Array:
 # =============================================================================
 
 static func _log(message: String, mod_name: String, log_type: String = "info", only_once := false) -> void:
+	if OS.has_feature("logger_off"):
+		return
 	if _is_mod_name_ignored(mod_name):
 		return
 
